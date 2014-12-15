@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  path: MyString
+  response: MyText
+  is_active: false
+
+two:
+  path: MyString
+  response: MyText
+  is_active: false

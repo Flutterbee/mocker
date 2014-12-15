@@ -1,0 +1,15 @@
+<p>
+  <strong>Path:</strong>
+  <%= @stub.path %>
+</p>
+ 
+<p>
+  <strong>Response:</strong>
+  <%= @stub.response %>
+</p>
+
+<p>
+  <strong>IsActive?:</strong>
+  <%= @stub.is_active %>
+</p>
+<%= link_to 'Back', stubs_path %> | <%= link_to 'Edit', edit_stub_path(@stub) %>

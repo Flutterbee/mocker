@@ -5,6 +5,10 @@ skip_before_action :verify_authenticity_token
 
 	def get
 		uri = build_uri
+
+		if check_stub
+			return
+		end
 		forward_params = params_to_forward
 
 		uri.query = URI.encode_www_form(forward_params)
@@ -26,6 +30,16 @@ skip_before_action :verify_authenticity_token
 	end
 
 private
+	def check_stub
+		@stub = Stub.where(path: params[:path], is_active: true).take
+		if @stub.nil?
+			return false
+		end
+		
+		render json: @stub.response
+		return true
+	end
+
 	def build_uri
 		path = params[:path]
 		return URI.parse('http://www.example.com/' + path)

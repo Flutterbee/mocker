@@ -1,0 +1,19 @@
+<h1>Listing Stubs</h1>
+<%= link_to 'New stub', new_stub_path %>
+<table>
+  <tr>
+    <th>Path</th>
+    <th>Response</th>
+    <th>isActive</th>
+  </tr>
+ 
+  <% @stubs.each do |stub| %>
+    <tr>
+      <td><%= stub.path %></td>
+      <td><%= stub.response %></td>
+      <td><%= stub.is_active %></td>
+      <td><%= link_to 'Show', stub_path(stub) %></td>
+      <td><%= link_to 'Edit', edit_stub_path(stub) %></td>
+      <td><%= link_to 'Destroy', stub_path(stub), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
