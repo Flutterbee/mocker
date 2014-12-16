@@ -1,4 +1,7 @@
 class StubsController < ApplicationController
+	if (ENV['PASSWORD'] && ENV['USERNAME'])
+		http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD']
+	end
 
 	def new
 		@stub = Stub.new
