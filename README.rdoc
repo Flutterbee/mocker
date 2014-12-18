@@ -1,10 +1,10 @@
 == README
 
-You need to create a .env configuration file as follows:
+You will need to add entries in <tt>config/secrets.yml</tt>  file as follows:
 
   FORWARD_HOST=http://www.example.com/
   USERNAME=mocker
   PASSWORD=mocker
 
-Requests which don't have stubs will be forwarded to the url specified in this environment variable
+Requests which don't have stubs will be forwarded to the host specified in this environment variable
 Specifying USERNAME, PASSWORD adds HTTP basic authentication to stubs configuration page
