@@ -1,6 +1,6 @@
 class StubsController < ApplicationController
-	if (ENV['PASSWORD'] && ENV['USERNAME'])
-		http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD']
+	if (Rails.application.secrets['PASSWORD'] && Rails.application.secrets['USERNAME'])
+		http_basic_authenticate_with name: Rails.application.secrets['USERNAME'], password: Rails.application.secrets['PASSWORD']
 	end
 
 	def new

@@ -42,7 +42,7 @@ private
 
 	def build_uri
 		path = params[:path]
-		return URI.parse(ENV['FORWARD_HOST'] + path)
+		return URI.parse(Rails.application.secrets['FORWARD_HOST'] + path)
 	end
 
 	def params_to_forward
