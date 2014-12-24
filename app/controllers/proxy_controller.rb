@@ -13,7 +13,9 @@ skip_before_action :verify_authenticity_token
 
 		uri.query = URI.encode_www_form(forward_params)
 
-		render json: Net::HTTP.get(uri)
+		res = Net::HTTP.get_response(uri)
+
+		render json: res.body, status: res.code
 	end
 
 	def post
@@ -29,8 +31,8 @@ skip_before_action :verify_authenticity_token
 
 		http = Net::HTTP.new(uri.host, uri.port)
 
-		response = http.post(uri.path, forward_params.to_json, json_headers)
-		render json: response.body
+		res = http.post(uri.path, forward_params.to_json, json_headers)
+		render json: res.body, status: res.code
 	end
 
 private
