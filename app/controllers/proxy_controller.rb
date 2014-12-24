@@ -20,6 +20,10 @@ skip_before_action :verify_authenticity_token
 		uri = build_uri
 		forward_params = params_to_forward
 
+		if check_stub
+			return
+		end
+
 		json_headers = {"Content-Type" => "application/json",
                 "Accept" => "application/json"}
 
