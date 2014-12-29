@@ -15,7 +15,12 @@ skip_before_action :verify_authenticity_token
 
 		res = Net::HTTP.get_response(uri)
 
-		render json: res.body, status: res.code
+		content_type = res['Content-Type']
+		if content_type.include? "html"
+			render html: res.body.html_safe, status: res.code
+		else
+			render json: res.body, status: res.code	
+		end
 	end
 
 	def post
@@ -42,7 +47,12 @@ private
 			return false
 		end
 		
-		render json: @stub.response
+		stub_response = @stub.response
+		if stub_response.include? "<html"
+			render html: stub_response.html_safe
+		else
+			render json: stub_response
+		end
 		return true
 	end
 
