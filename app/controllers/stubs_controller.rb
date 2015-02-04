@@ -49,7 +49,7 @@ class StubsController < ApplicationController
 
 	private
 	def stub_params
-		params.require(:stub).permit(:path, :response, :is_active)
+		params.require(:stub).permit(:path, :response, :is_active, :params)
 		
 	end
 

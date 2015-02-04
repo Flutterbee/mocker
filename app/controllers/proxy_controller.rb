@@ -42,12 +42,18 @@ skip_before_action :verify_authenticity_token
 
 private
 	def check_stub
-		@stub = Stub.where(path: params[:path], is_active: true).take
-		if @stub.nil?
+		stub = Stub.where(path: params[:path], is_active: true).take
+		if stub.nil?
 			return false
+		elsif !stub.params.blank?
+			stub_params = JSON.parse(stub.params)
+			params_match = (stub_params.to_a - params.to_a).empty?
+			if !params_match
+				return false
+			end
 		end
 		
-		stub_response = @stub.response
+		stub_response = stub.response
 		if stub_response.include? "<html"
 			render html: stub_response.html_safe
 		else
